@@ -29,9 +29,9 @@ const Program = ({ program }: ProgramProps) => (
   <div className={programStyle}>
   {
     program.statements.map(statement =>
-      <div>
+      <pre>
         { statement.code }
-      </div>
+      </pre>
     )
   }
   </div>
