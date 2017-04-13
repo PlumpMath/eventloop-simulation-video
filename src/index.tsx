@@ -16,7 +16,7 @@ import { percent } from 'csx'
 import store from 'store'
 import Root from 'components/Root'
 
-import { loadProgram } from 'actions/program'
+import { loadProgram, nextStep } from 'actions/program'
 import defaultProgram from 'programs'
 
 const appRoot = document.createElement('div')
@@ -41,7 +41,7 @@ const renderVideo = () => {
   const NextRoot: typeof Root = require('components/Root').default
 
   render(
-    <NextRoot store={store}/>,
+    <NextRoot store={store} />,
     appRoot
   )
 }
@@ -50,6 +50,13 @@ if (module.hot)
   module.hot.accept('components/Root', renderVideo)
 
 renderVideo()
-store.dispatch(loadProgram(defaultProgram))
 
 // Load default Program
+store.dispatch(loadProgram(defaultProgram))
+
+// Go to next scenario step when space key is pressed
+window.document.addEventListener('keyup', event =>
+  event.keyCode === 32 // Space
+    ? store.dispatch(nextStep())
+    : null
+)

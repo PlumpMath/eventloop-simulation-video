@@ -31,6 +31,9 @@ const programReducer =
           _ => _.statements)(action.payload),
           _ => _.currentStatement)(0)
 
+      case 'NEXT_STEP':
+        return set(state, _ => _.currentStatement)(x => x + 1)
+
       default:
         return state
     }
