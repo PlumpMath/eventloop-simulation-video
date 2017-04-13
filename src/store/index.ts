@@ -21,7 +21,7 @@ const enhancer = compose(
   DevTools.instrument()
 ) as StoreEnhancer<State>
 
-const store = createStore<State>(reducer, {} as State, enhancer)
+const store = createStore<State>(reducer, enhancer)
 
 if (module.hot)
   module.hot.accept('reducers', () =>
